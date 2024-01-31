@@ -42,14 +42,14 @@ RUN apt-get update \
     \
     # install dependencies
     && apt-get -y --no-install-recommends install \
-        ca-certificates \
-        curl \
-        unzip \
+    ca-certificates \
+    curl \
+    unzip \
     \
     # install PHP packages
     && apt-get update \
     && apt-get -y --no-install-recommends install \
-        $(cat /tmp/php-packages.txt) \
+    $(cat /tmp/php-packages.txt) \
     \
     # set symlink to version number for script management
     && ln -sf /etc/php/${BUILD_PHP_VERSION}/ /etc/php/current_version \
@@ -58,7 +58,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2.4 /usr/bin/composer /usr/bin/composer
 
 COPY --chmod=755 etc/s6-overlay/ /etc/s6-overlay/
 

@@ -59,10 +59,14 @@ function build (){
         docker build \
             --build-arg UPSTREAM_CHANNEL="${DEV_UPSTREAM_CHANNEL}" \
             --build-arg PHP_VERSION="${2}" \
-            -t "serversideup/php:beta-${2}-$1" \
+            --platform linux/amd64 \
+            -t "hotelstore/php:${2}-$1" \
             $SCRIPT_DIR/src/$1/
         
-        ui_set_green && echo "✅ Build completed for $label - ${2} (serversideup/php:beta-${2}-$1)" && ui_reset_colors
+        ui_set_green && echo "✅ Build completed for $label - ${2} (hotelstore/php:${2}-$1)" && ui_reset_colors
+
+        docker push "hotelstore/php:${2}-$1"
+        ui_set_green && echo "✅ Upload completed for $label - ${2} (hotelstore/php:${2}-$1)" && ui_reset_colors
 }
 
 function build_versions {

@@ -41,3 +41,10 @@ User gid:    $(id -g webuser)
 -------------------------------------
 "
 fi
+
+if [ -e "/init_script.sh" ]; then
+    echo "Sourcing /init_script.sh"
+    source "/init_script.sh"
+else
+    echo "No /init_script.sh found"
+fi
