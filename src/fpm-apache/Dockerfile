@@ -1,6 +1,6 @@
 ARG UPSTREAM_CHANNEL=''
 ARG PHP_VERSION='8.1'
-ARG BASE_IMAGE="serversideup/php:${UPSTREAM_CHANNEL}${PHP_VERSION}-fpm"
+ARG BASE_IMAGE="hotelstore/php:${UPSTREAM_CHANNEL}${PHP_VERSION}-fpm"
 
 FROM ${BASE_IMAGE}
 
@@ -25,14 +25,14 @@ ENV MSMTP_RELAY_SERVER_HOSTNAME="mailhog" \
     APACHE_RUN_GROUP="webgroup" \
     APACHE_DOCUMENT_ROOT="/var/www/html/public/" \
     DEBIAN_FRONTEND=noninteractive \
-    SSL_MODE="full"
+    SSL_MODE="off"
 
 # install`apach2` (web server) & `msmtp` (smtp client)
 RUN apt-get update \
     && apt-get -y --no-install-recommends install \
-        msmtp \
-        msmtp-mta \
-        apache2 \
+    msmtp \
+    msmtp-mta \
+    apache2 \
     \
     # enable Apache2 mods
     && a2enmod actions autoindex deflate headers http2 proxy proxy_fcgi remoteip rewrite setenvif ssl unique_id \

@@ -1,6 +1,6 @@
 ARG UPSTREAM_CHANNEL=''
 ARG PHP_VERSION='8.1'
-ARG BASE_IMAGE="serversideup/php:${UPSTREAM_CHANNEL}${PHP_VERSION}-cli"
+ARG BASE_IMAGE="hotelstore/php:${UPSTREAM_CHANNEL}${PHP_VERSION}-cli"
 
 FROM ${BASE_IMAGE}
 
@@ -25,7 +25,7 @@ ENV PHP_DATE_TIMEZONE="UTC" \
 # install `php-fpm` (php server) and `libfcgi-bin` (for healthchecks)
 RUN apt-get update \
     && apt-get -y --no-install-recommends install \
-        php${BUILD_PHP_VERSION}-fpm libfcgi-bin \
+    php${BUILD_PHP_VERSION}-fpm libfcgi-bin \
     \
     # allow `php-fpm` script to be referenced without a version
     && ln -sf /usr/sbin/php-fpm${BUILD_PHP_VERSION} /usr/sbin/php-fpm \

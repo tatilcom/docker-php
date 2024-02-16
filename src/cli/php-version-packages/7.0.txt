@@ -13,3 +13,4 @@ php7.0-sqlite3
 php7.0-xml
 php7.0-zip
 php7.0-apcu
+php7.0-opcache

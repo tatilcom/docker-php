@@ -5,7 +5,7 @@ set -e
 
 ##########################
 # Environment Settings
-DEV_UPSTREAM_CHANNEL="beta-"
+DEV_UPSTREAM_CHANNEL=""
 
 # UI Colors
 function ui_set_yellow {
